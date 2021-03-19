@@ -39,7 +39,18 @@ class Game extends React.Component {
 		await this.setState({ dice: [dice1, dice2] });
 	};
 
-	hold = () => {};
+	hold = async () => {
+		let players = [...this.state.players];
+		let tempPlayer = { ...players[this.state.playerTurn] };
+		tempPlayer.holdScore += tempPlayer.currentScore;
+		tempPlayer.currentScore = 0;
+		players[this.state.playerTurn] = tempPlayer;
+		await this.setState({ players });
+		this.state.playerTurn === 0
+			? (this.state.playerTurn = 1)
+			: (this.state.playerTurn = 0);
+		console.log(players);
+	};
 	render() {
 		return (
 			<div className="game-container">
