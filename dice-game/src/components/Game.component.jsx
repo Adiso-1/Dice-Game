@@ -5,6 +5,7 @@ import Player from './Player.component';
 
 class Game extends React.Component {
 	state = {
+		gameFinish: false,
 		scoreToWin: 100,
 		playerTurn: null,
 		dice: [null, null],
@@ -23,7 +24,6 @@ class Game extends React.Component {
 			},
 		],
 	};
-	startState = { ...this.state };
 	rollDice = async (e) => {
 		const dice1 = Math.floor(Math.random() * 6) + 1;
 		const dice2 = Math.floor(Math.random() * 6) + 1;
@@ -54,6 +54,7 @@ class Game extends React.Component {
 			players[0].holdScore = 0;
 			players[1].holdScore = 0;
 			players[this.state.playerTurn] = tempPlayer;
+			this.setState({ gameFinish: true });
 		}
 		tempPlayer.currentScore = 0;
 		await this.setState({ players });
@@ -62,15 +63,28 @@ class Game extends React.Component {
 			: (this.state.playerTurn = 0);
 	};
 	reset = async () => {
-		this.setState(this.startState);
+		window.location.reload();
 	};
 	componentDidMount() {
 		let players = [...this.state.players];
 		players[0].name = this.props.player1Name;
 		players[1].name = this.props.player2Name;
 		const playerTurn = Math.round(Math.random());
-		this.setState({ players, playerTurn, scoreToWin: this.props.scoreToWin });
+		this.setState({
+			players,
+			playerTurn,
+			scoreToWin: Number(this.props.scoreToWin) || 100,
+		});
 	}
+
+	componentWillUpdate(prevProps, prevState) {
+		if (prevState.gameFinish) {
+			setTimeout(() => {
+				this.setState({ gameFinish: false });
+			}, 2000);
+		}
+	}
+
 	render() {
 		return (
 			<div className="game-container">
@@ -96,6 +110,11 @@ class Game extends React.Component {
 						/>
 					</div>
 				</div>
+				{this.state.gameFinish ? (
+					<h2 className="player-win">
+						{this.state.players[this.state.playerTurn].name} WINS
+					</h2>
+				) : null}
 				<div className="button-game-container">
 					<Button
 						onClick={(e) => this.rollDice(e)}

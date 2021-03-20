@@ -5,6 +5,7 @@ class PlayerNameInput extends React.Component {
 		return (
 			<div action="">
 				<input
+					placeholder={this.props.name}
 					onChange={this.props.onNameChange}
 					value={this.props.player1}
 					type="text"

@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerNameInput from './PlayerNameInput.component';
+import ScoreInput from './ScoreInput.component';
 
 class Intro extends React.Component {
 	render() {
@@ -22,6 +23,15 @@ class Intro extends React.Component {
 						onNameChange={this.props.onNameChange}
 						name="player2"
 					/>
+				</form>
+				<form action="">
+					<label htmlFor="name">Points To Win:</label>
+					<div>
+						<ScoreInput
+							value={this.props.scoreToWin}
+							handleInput={this.props.handleInput}
+						/>
+					</div>
 				</form>
 			</div>
 		);

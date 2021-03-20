@@ -473,4 +473,12 @@ button:hover {
 }
 .players-settings > form input {
 	margin-top: 10px;
+	text-align: center;
+}
+.player {
+	padding-top: 2%;
+}
+.player-win {
+	text-align: center;
+	color: red;
 }

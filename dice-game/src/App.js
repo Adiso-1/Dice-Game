@@ -17,6 +17,9 @@ class App extends React.Component {
 	onNameChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
+	handleInput = (e) => {
+		this.setState({ scoreToWin: e.target.value });
+	};
 	render() {
 		return this.state.gameStart ? (
 			<div className="app">
@@ -28,7 +31,11 @@ class App extends React.Component {
 			</div>
 		) : (
 			<div className="intro">
-				<Intro onNameChange={(e) => this.onNameChange(e)} />
+				<Intro
+					handleInput={(e) => this.handleInput(e)}
+					value={this.state.scoreToWin}
+					onNameChange={(e) => this.onNameChange(e)}
+				/>
 				<div className="button-game-container start-button">
 					<Button onClick={(e) => this.startGame(e)} name="START" />
 				</div>
