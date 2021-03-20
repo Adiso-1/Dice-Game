@@ -16,6 +16,8 @@ class Dice extends React.Component {
 								alt={`dice-${score}`}
 							/>
 						);
+					} else {
+						return null;
 					}
 				})}
 			</div>

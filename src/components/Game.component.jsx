@@ -81,7 +81,7 @@ class Game extends React.Component {
 		if (prevState.gameFinish) {
 			setTimeout(() => {
 				this.setState({ gameFinish: false });
-			}, 2000);
+			}, 1000);
 		}
 	}
 
