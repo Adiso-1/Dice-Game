@@ -404,7 +404,7 @@ code {
 .dice-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 }
 .current-score {
 	padding: 10px;
@@ -424,7 +424,7 @@ code {
 .button-game-container {
 	display: flex;
 	justify-content: space-around;
-	padding-bottom: 50px;
+	padding-bottom: 20px;
 }
 .button-game-container > button {
 	position: relative;
@@ -467,7 +467,8 @@ button:hover {
 }
 .players-settings > form {
 	padding: 30px;
-	color: #fff;
+	color: rgb(106, 163, 250);
+	/* color: var(--colorShadeA); */
 	text-align: center;
 	font-size: 1.5rem;
 }
@@ -480,5 +481,48 @@ button:hover {
 }
 .player-win {
 	text-align: center;
-	color: red;
+	color: rgb(106, 163, 250);
+}
+@media screen and (max-width: 450px) {
+	body {
+		width: 100vw;
+		height: 100vh;
+	}
+	#root {
+		width: 100%;
+		height: 100vh;
+	}
+	.app {
+		height: 100%;
+	}
+	.game-container {
+		width: 100%;
+	}
+	.game-container button {
+		width: 90%;
+		margin: 5px;
+	}
+	.players-settings {
+		flex-direction: column;
+	}
+	.button-game-container {
+		flex-direction: column;
+		padding-bottom: 10px;
+	}
+	.button-game-container > button:active {
+		transform: translate(0em, 0em);
+	}
+	.dice-container .dice {
+		width: 60px;
+		height: 60px;
+	}
+	.game-container .button-game-container {
+		display: flex;
+		align-items: center;
+	}
+}
+@media screen and (max-width: 1000px) {
+	.players-settings {
+		flex-direction: column;
+	}
 }
