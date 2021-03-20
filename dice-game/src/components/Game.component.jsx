@@ -5,15 +5,18 @@ import Player from './Player.component';
 
 class Game extends React.Component {
 	state = {
-		playerTurn: 0,
+		scoreToWin: 100,
+		playerTurn: null,
 		dice: [null, null],
 		players: [
 			{
+				name: '',
 				currentScore: 0,
 				holdScore: 0,
 				wins: 0,
 			},
 			{
+				name: '',
 				currentScore: 0,
 				holdScore: 0,
 				wins: 0,
@@ -45,12 +48,15 @@ class Game extends React.Component {
 		let players = [...this.state.players];
 		let tempPlayer = { ...players[this.state.playerTurn] };
 		tempPlayer.holdScore += tempPlayer.currentScore;
-		tempPlayer.currentScore = 0;
 		players[this.state.playerTurn] = tempPlayer;
-		await this.setState({ players });
-		console.log(players[this.state.playerTurn]);
-		if (players[this.state.playerTurn].holdScore >= 100) {
+		if (players[this.state.playerTurn].holdScore >= this.state.scoreToWin) {
+			tempPlayer.wins += 1;
+			players[0].holdScore = 0;
+			players[1].holdScore = 0;
+			players[this.state.playerTurn] = tempPlayer;
 		}
+		tempPlayer.currentScore = 0;
+		await this.setState({ players });
 		this.state.playerTurn === 0
 			? (this.state.playerTurn = 1)
 			: (this.state.playerTurn = 0);
@@ -58,8 +64,12 @@ class Game extends React.Component {
 	reset = async () => {
 		this.setState(this.startState);
 	};
-	componentDidUpdate(prevProps, prevState) {
-		console.log(prevState);
+	componentDidMount() {
+		let players = [...this.state.players];
+		players[0].name = this.props.player1Name;
+		players[1].name = this.props.player2Name;
+		const playerTurn = Math.round(Math.random());
+		this.setState({ players, playerTurn, scoreToWin: this.props.scoreToWin });
 	}
 	render() {
 		return (
@@ -67,9 +77,10 @@ class Game extends React.Component {
 				<div className="players-container">
 					<div className="player player-1">
 						<Player
+							wins={this.state.players[0].wins}
 							score={this.state.players[0].holdScore}
 							currentScore={this.state.players[0].currentScore}
-							name="ADI"
+							name={this.state.players[0].name}
 						/>
 					</div>
 					<div className="dice-container">
@@ -78,9 +89,10 @@ class Game extends React.Component {
 					</div>
 					<div className="player player-2">
 						<Player
+							wins={this.state.players[1].wins}
+							name={this.state.players[1].name}
 							score={this.state.players[1].holdScore}
 							currentScore={this.state.players[1].currentScore}
-							name="SAPIR"
 						/>
 					</div>
 				</div>

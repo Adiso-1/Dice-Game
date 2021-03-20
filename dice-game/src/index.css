@@ -376,6 +376,8 @@ code {
 	align-items: center;
 	height: 100vh;
 	justify-content: center;
+	background: url('https://images.unsplash.com/photo-1505855788694-023053764ae5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1985&q=80')
+		no-repeat center center/cover;
 }
 .app {
 	height: 75%;
@@ -392,6 +394,7 @@ code {
 	width: 80%;
 	flex-direction: column;
 	justify-content: space-between;
+	box-shadow: 0px 0px 20px #000;
 }
 .players-container {
 	display: flex;
@@ -402,6 +405,12 @@ code {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+}
+.current-score {
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid silver;
+	border-radius: 10px;
 }
 /* !Button Design! */
 :root {
@@ -433,7 +442,8 @@ code {
 	padding: 1em 2em;
 	border: 2px solid var(--colorShadeA);
 	border-radius: 1em;
-	background: var(--colorShadeE);
+	/* background: var(--colorShadeE); */
+	background: #111;
 	transform-style: preserve-3d;
 	transition: all 0.2s cubic-bezier(0, 0, 1, 1);
 }
@@ -448,4 +458,19 @@ i {
 button:hover {
 	background: var(--colorShadeD);
 	/* transform: translate(0, 0.375em); */
+}
+.start-button {
+	margin-top: 50px;
+}
+.players-settings {
+	display: flex;
+}
+.players-settings > form {
+	padding: 30px;
+	color: #fff;
+	text-align: center;
+	font-size: 1.5rem;
+}
+.players-settings > form input {
+	margin-top: 10px;
 }
