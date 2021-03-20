@@ -426,7 +426,8 @@ code {
 	justify-content: space-around;
 	padding-bottom: 20px;
 }
-.button-game-container > button {
+.button-game-container > button,
+.instructions > button {
 	position: relative;
 	display: inline-block;
 	cursor: pointer;
@@ -448,7 +449,8 @@ code {
 	transition: all 0.2s cubic-bezier(0, 0, 1, 1);
 }
 
-.button-game-container > button:active {
+.button-game-container > button:active,
+.instructions > button:active {
 	transform: translate(0em, 0.75em);
 }
 i {
@@ -482,6 +484,29 @@ button:hover {
 .player-win {
 	text-align: center;
 	color: rgb(106, 163, 250);
+}
+.instructions-container {
+	height: 100%;
+	overflow: scroll;
+}
+.instructions {
+	color: #fff;
+	line-height: 1.8rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: left;
+	padding: 70px 30px;
+	position: relative;
+}
+.instructions-header {
+	text-decoration: underline;
+}
+.instructions > button {
+	position: absolute;
+	top: 10px;
+	left: 10px;
 }
 @media screen and (max-width: 450px) {
 	body {
