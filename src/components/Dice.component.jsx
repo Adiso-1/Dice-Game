@@ -12,7 +12,7 @@ class Dice extends React.Component {
 							<img
 								key={score}
 								className="dice"
-								src={process.env.PUBLIC_URL + `/dice-${score}.png`}
+								src={process.env.PUBLIC_URL + `img/dice-${score}.png`}
 								alt={`dice-${score}`}
 							/>
 						);

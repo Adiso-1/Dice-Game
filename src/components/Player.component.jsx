@@ -7,7 +7,11 @@ class Player extends React.Component {
 		return (
 			<div className="player">
 				<h2 className="wins">{`WINS - ${this.props.wins}`}</h2>
-				<PlayerScore score={this.props.score} name={this.props.name} />
+				<PlayerScore
+					playerTurn={this.props.playerTurn}
+					score={this.props.score}
+					name={this.props.name}
+				/>
 				<CurrentScore currentScore={this.props.currentScore} />
 			</div>
 		);

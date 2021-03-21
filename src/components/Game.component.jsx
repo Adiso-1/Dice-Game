@@ -57,10 +57,10 @@ class Game extends React.Component {
 			this.setState({ gameFinish: true });
 		}
 		tempPlayer.currentScore = 0;
-		await this.setState({ players });
 		this.state.playerTurn === 0
 			? (this.state.playerTurn = 1)
 			: (this.state.playerTurn = 0);
+		await this.setState({ players });
 	};
 	reset = async () => {
 		window.location.reload();
@@ -91,6 +91,7 @@ class Game extends React.Component {
 				<div className="players-container">
 					<div className="player player-1">
 						<Player
+							playerTurn={this.state.playerTurn === 0}
 							wins={this.state.players[0].wins}
 							score={this.state.players[0].holdScore}
 							currentScore={this.state.players[0].currentScore}
@@ -103,6 +104,7 @@ class Game extends React.Component {
 					</div>
 					<div className="player player-2">
 						<Player
+							playerTurn={this.state.playerTurn === 1}
 							wins={this.state.players[1].wins}
 							name={this.state.players[1].name}
 							score={this.state.players[1].holdScore}
@@ -112,7 +114,10 @@ class Game extends React.Component {
 				</div>
 				{this.state.gameFinish ? (
 					<h2 className="player-win">
-						{this.state.players[this.state.playerTurn].name} WINS
+						{this.state.playerTurn === 0
+							? this.state.players[1].name
+							: this.state.players[0].name}{' '}
+						WINS
 					</h2>
 				) : null}
 				<div className="button-game-container">
