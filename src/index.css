@@ -487,7 +487,7 @@ button:hover {
 }
 .instructions-container {
 	height: 100%;
-	overflow: scroll;
+	overflow: auto;
 }
 .instructions {
 	color: #fff;
@@ -534,6 +534,9 @@ button:hover {
 		flex-direction: column;
 		padding-bottom: 10px;
 	}
+	.start-button > button {
+		margin-bottom: 10px;
+	}
 	.button-game-container > button:active {
 		transform: translate(0em, 0em);
 	}
@@ -544,6 +547,9 @@ button:hover {
 	.game-container .button-game-container {
 		display: flex;
 		align-items: center;
+	}
+	.start-button {
+		margin-top: 30px;
 	}
 }
 @media screen and (max-width: 1000px) {
